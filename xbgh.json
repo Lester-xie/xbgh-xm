@@ -1,0 +1,133 @@
+{
+  "title": "合同管理",
+  "wrap": [
+    {
+      "type": "form",
+      "content": [
+        {
+          "label": "操作内容",
+          "name": ""
+        },
+        {
+          "label": "ID",
+          "type": "number",
+          "name": ""
+        },
+        {
+          "label": "类型",
+          "widget": "select",
+          "name": ""
+        },
+        {
+          "label": "操作时间",
+          "widget": "datePicker",
+          "startTimeId": "stime",
+          "startName": "stime",
+          "startPlaceholder": "开始时间",
+          "endTimeId": "etime",
+          "endName": "etime",
+          "endPlaceholder": "结束时间"
+        }
+      ],
+      "options": [
+        {
+          "name": "查询",
+          "class": "btn-sm btn-info"
+        },
+        {
+          "name": "新增",
+          "class": "btn-sm btn-info",
+          "plug": "modal-append",
+          "api": "api"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "content": [
+        "操作内容",
+        "类型",
+        "发布时间",
+        "操作时间",
+        "操作"
+      ],
+      "options": [
+        {
+          "name": "删除",
+          "type": "button",
+          "class": "btn-sm btn-danger",
+          "plug": "confirm"
+        },
+        {
+          "name": "编辑",
+          "type": "a",
+          "plug": "modal-edit",
+          "api": "api",
+          "api_echo": "api"
+        }
+      ],
+      "plug": {
+        "pager": "pager",
+        "checkAll": "",
+        "stickHead": "stickHead"
+      }
+    },
+    {
+      "type": "modal",
+      "content": [
+        {
+          "label": "标题",
+          "name": "title"
+        },
+        {
+          "label": "ID",
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "label": "类型",
+          "widget": "select",
+          "name": "select"
+        },
+        {
+          "label": "文本域",
+          "widget": "textarea",
+          "name": "textarea",
+          "rows": "4",
+          "count": "100"
+        },
+        {
+          "label": "截止日期",
+          "widget": "datePicker",
+          "startTimeId": "modalstime",
+          "startName": "stime",
+          "startPlaceholder": "开始时间",
+          "endTimeId": "modaletime",
+          "endName": "etime",
+          "endPlaceholder": "结束时间"
+        },
+        {
+          "label": "类型",
+          "widget": "radio",
+          "name": "radio",
+          "content": [
+            "app",
+            "web",
+            "全部"
+          ]
+        },
+        {
+          "label": "上传图片",
+          "widget": "uploader",
+          "name": "upload",
+          "fdfs_test": "http://fdfs.test.ximalaya.com",
+          "fdfs_online": "http://fdfs.xmcdn.com",
+          "server_test": "http://upload.test.ximalaya.com/dtres/backend/album/upload",
+          "server_online": "http://upload.ximalaya.com/dtres/backend/album/upload"
+        }
+      ],
+      "title": "title",
+      "width": "500"
+    }
+  ]
+}

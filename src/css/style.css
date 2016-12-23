@@ -1,0 +1,260 @@
+@charset "utf-8";
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: "Helvetica Neue", Helvetica, "STHeiTi", "Microsoft Yahei", "微软雅黑", Arial, sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #e7e8eb;
+}
+
+/*头部标题*/
+.wrap {
+    background-color: #fff;
+    padding: 10px 20px;
+    border-top: 4px solid #44b549;
+    border-bottom: 1px solid #d9dadc;
+    color: #b3b6b7;
+}
+
+.col-md-3, .col-lg-3, .col-md-7, .col-lg-7, .col-md-2, .col-lg-2 {
+    min-height: 100vh;
+    padding-top: 20px;
+    padding-right: 0;
+    border-right: 1px solid #d9dadc;
+}
+
+.col-md-7, .col-lg-7 {
+    padding-left: 0;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 400;
+    font-family: ""
+}
+
+/*菜单栏*/
+.content {
+    min-height: 100vh;
+    margin: 20px;
+    background-color: #fff;
+    border: 1px solid #d9dadc;
+}
+
+.menu > p {
+    margin-left: 20px;
+    color: #b3b6b7;
+    font-size: 20px;
+}
+
+.menu-list-item {
+    display: block;
+    width: 100%;
+    color: #333;
+    padding: 5px 0;
+    padding-left: 53px;
+    font-size: 16px;
+}
+
+.menu-list-item:visited,
+.menu-list-item:hover,
+.menu-list-item:active {
+    text-decoration: none;
+    background-color: #f4f5f9;
+    color: #333;
+}
+
+.menu-list-item.active {
+    text-decoration: none;
+    background-color: #62b452;
+    color: #fff;
+}
+
+.active {
+    text-decoration: none;
+    background-color: #62b452;
+    color: #fff;
+}
+
+.menu-list-content {
+    margin-left: 40px;
+}
+
+.menu-list-content ul {
+    list-style: disc;
+}
+
+.menu-list-content span {
+    cursor: move;
+}
+
+.menu-list-content span input,
+.menu-list-content span textarea {
+    cursor: move;
+}
+
+.menu-list-content li {
+    padding: 3px;
+}
+
+.select {
+    height: 25px;
+}
+
+.date {
+    width: 73px;
+}
+
+.button,
+.button:focus,
+.button:hover {
+    color: #fff;
+}
+
+.button:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.textarea {
+    resize: none;
+    border: 1px solid #e9e9e9;
+}
+
+/*模板块*/
+.template {
+    width: 95%;
+    margin: 0 auto;
+    border: 1px dashed #d9dadc;
+}
+
+.template-panel {
+    width: 300px;
+    height: 500px;
+    margin: 10px;
+    display: inline-block;
+}
+
+.template-panel .primary {
+    background-color: #88b8e3;
+    color: #eaeaea;
+}
+
+.template-panel .primary:hover {
+    background-color: #7eacd6;
+    cursor: pointer;
+}
+
+.template-panel .active {
+    background-color: #7cd198;
+    color: #eaeaea;
+}
+
+.template-panel .active:hover {
+    background-color: #74c790;
+    cursor: pointer;
+}
+
+.template-title {
+    font-size: 30px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 100px;
+    height: 100px;
+}
+
+.template-content {
+    box-sizing: border-box;
+    height: 300px;
+    border: 1px solid #e9e9e9;
+    border-top: none;
+}
+
+.template-content img {
+    width: 100%;
+    height: 300px;
+}
+
+.template-wrap {
+    border-top: none !important;
+}
+
+.choose-modal {
+    background-color: #f4f5f9;
+    color: #b3b6b7;
+    text-align: center;
+    cursor: pointer;
+    border-bottom: 1px dashed #d9dadc;
+}
+
+/*生成器*/
+.gen {
+    min-height: 550px;
+    padding: 10px;
+}
+
+.gen-wrapper {
+    border: 1px dashed #d9dadc;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.gen-condition {
+    min-height: 100px;
+}
+
+.gen-table {
+    min-height: 380px;
+}
+
+.gen-condition [data-widget] {
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    margin-left: 5px;
+    margin-bottom:10px;
+}
+
+.gen-title {
+    border: none;
+    outline: none;
+    line-height: 30px;
+    height: 30px;
+}
+
+.gen-title:focus {
+    outline: none;
+    border-bottom: 1px solid #d9dadc;
+}
+
+/*属性区*/
+.attribute > p {
+    color: #b3b6b7;
+    font-size: 20px;
+}
+
+.attribute {
+    color: #666;
+}
+
+.attribute-wrap input {
+    width: 120px;
+    border: none;
+    border-bottom: 1px solid #d9dadc;
+    outline: none;
+}
+
+.attribute-wrap input:focus {
+    border-bottom: 1px solid #88b8e3;
+}
+
+.attribute-wrap > div {
+    margin-bottom: 10px;
+}
