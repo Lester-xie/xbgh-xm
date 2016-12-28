@@ -216,10 +216,14 @@ body {
 
 .gen-condition [data-widget] {
     display: inline-block;
-    height: 25px;
-    line-height: 25px;
-    margin-left: 5px;
-    margin-bottom:10px;
+    line-height: 28px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    position:relative;
+}
+
+.gen-condition [data-widget] input {
+    height: inherit;
 }
 
 .gen-title {
@@ -234,6 +238,21 @@ body {
     border-bottom: 1px solid #d9dadc;
 }
 
+.gen-active {
+    color: #74c790;
+}
+
+.gen-active button {
+    background-color: #74c790;
+    border:1px solid #74c790;
+}
+
+.gen-active input,
+.gen-active textarea {
+    border: 1px solid #74c790;
+    outline: none;
+}
+
 /*属性区*/
 .attribute > p {
     color: #b3b6b7;
@@ -245,16 +264,49 @@ body {
 }
 
 .attribute-wrap input {
-    width: 120px;
+    width: 90%;
     border: none;
     border-bottom: 1px solid #d9dadc;
     outline: none;
 }
 
 .attribute-wrap input:focus {
-    border-bottom: 1px solid #88b8e3;
+    border-bottom: 1px solid #74c790;
 }
 
 .attribute-wrap > div {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    display: none;
+}
+
+/*解决和bootstrap的label样式冲突*/
+.label {
+    padding: 0;
+    color: inherit;
+    font-size: 100%;
+    font-weight: 400;
+    line-height: inherit;
+    text-align:left;
+}
+
+.changeClass i{
+    display:inline-block;
+    width:20px;
+    height:20px;
+}
+
+.btnPrimary{
+    background-color: #428bca;
+}
+.btnSuccess{
+    background-color: #5cb85c;
+}
+.btnInfo{
+    background-color: #5bc0de;
+}
+.btnWarning{
+    background-color: #f0ad4e;
+}
+.btnDanger{
+    background-color: #d9534f;
 }

@@ -1,10 +1,11 @@
-(function ($) {
+(function ($, cmp) {
     var $item = $(".menu-list-item"),
-        modalName = "";
+        modalName = "",
+        close = ".fa-minus-circle";
 
-    var global = {
-        form: [],
-        table: []
+    var list = {
+        form: {},
+        table: {}
     };
 
     function Index() {
@@ -19,6 +20,8 @@
             var self = this;
 
             self.fMenuChoose().fModalChoose(self);
+
+            self.fExport(self);
         },
 
         //菜单选择
@@ -41,6 +44,10 @@
                 $(".choose-modal").trigger("click");
                 if (!$item.is(".active")) $item[0].click();
                 $(".gen").show();
+                list = {
+                    form: {},
+                    table: {}
+                }
             });
             $(document).on("click", ".choose-modal", function () {
                 var self = this;
@@ -93,23 +100,205 @@
             };
             //拖动结束
             $condition[0].ondrop = function () {
+                var uuid = cmp.genUuid() + cmp.genUuid();
                 $condition.append(ele.outerHTML);
-                that.fBindToElem(ele)
+
+                $condition.find("[data-widget]:last").attr("data-uuid", uuid);
+                that.fBindToElem(ele, uuid);
+                that.fDelete();
             }
         },
 
-        //给拖动的元素绑定事件
-        fBindToElem: function (e) {
-            var $wrap = $(".attribute-wrap");
-            switch ($(e).attr("data-widget")) {
+        //给在条件区域拖动的元素绑定事件
+        fBindToElem: function (e, uuid) {
+            var $attributeWrap = $(".attribute-wrap"),
+                widget = $(e).attr("data-widget"),
+                $current, currentUuid;
+            switch (widget) {
                 case "radio":
-                    $wrap.append();
+                    list.form[uuid] = {
+                        label: "label",
+                        name: "",
+                        content: [],
+                        widget: "radio"
+                    };
+                    break;
+                case "checkbox":
+                    list.form[uuid] = {
+                        label: "label",
+                        name: "",
+                        content: [],
+                        widget: "checkbox"
+                    };
+                    break;
+                case "text":
+                    list.form[uuid] = {
+                        type: "text",
+                        name: ""
+                    };
+                    break;
+                case "textLabel":
+                    list.form[uuid] = {
+                        label: "label",
+                        type: "text",
+                        name: ""
+                    };
+                    break;
+                case "textarea":
+                    list.form[uuid] = {
+                        label: "label",
+                        name: "",
+                        rows: "",
+                        count: "",
+                        widget: "textarea"
+                    };
+                    break;
+                case "select":
+                    list.form[uuid] = {
+                        name: "",
+                        widget: "select"
+                    };
+                    break;
+                case "selectLabel":
+                    list.form[uuid] = {
+                        label: "label",
+                        name: "",
+                        widget: "select"
+                    };
+                    break;
+                case "timeSingle":
+                    list.form[uuid] = {
+                        label: "时间",
+                        name: "",
+                        placeholder: "",
+                        widget: "datePicker"
+                    };
+                    break;
+                case "time":
+                    list.form[uuid] = {
+                        label: "时间",
+                        startTimeId: "",
+                        startName: "",
+                        startPlaceholder: "",
+                        endTimeId: "",
+                        endName: "",
+                        endPlaceholder: "",
+                        widget: "datePicker"
+                    };
+                    break;
+                case "button":
+                    list.form[uuid] = {
+                        text: "按钮",
+                        api: "",
+                        buttonType: "",
+                        changeClass: "",
+                        class: "",
+                        plug:"",
+                        widgetType: "button"
+                    };
+                    break;
+                case "uploader":
+                    list.form[uuid] = {
+                        text: "上传图片",
+                        name: "",
+                        fdfsTest: "",
+                        fdfsOnline: "",
+                        serverTest: "",
+                        serverOnline: ""
+                    };
+                    break;
             }
-        }
+            //添加选定控件的样式骑自行车
+            $(".gen-condition [data-widget]").on("click", function () {
+                var uuid = $(this).attr("data-uuid");
+                $(".attribute-wrap > div").hide();
+                $(this).addClass("gen-active").siblings().removeClass("gen-active");
+                for (var i in list.form[uuid]) {
+                    $attributeWrap.find("." + i).show().find("input,select").val(list.form[uuid][i]);
+                }
+                $attributeWrap.find("div:visible input")[0].focus();
+                if ($(this).find(close).length == 0) {
+                    $(this).append('<i class="fa fa-minus-circle" style="position:absolute;top:-10px;right:-12px;color:red"></i>')
+                } else {
+                    $(this).find(close).show();
+                }
+                $(this).siblings().find(close).hide();
+            }).click();
 
+            //输入框失去焦点给数组赋值
+            $attributeWrap.on("blur", "input,select", function () {
+                if ($(".gen-active")[0]) {
+                    $current = $(".gen-active");
+                    currentUuid = $current.attr("data-uuid");
+                    var currentWidget = $(this).closest("div").attr("class"),
+                        currentSpan = $current.find("span"),
+                        currentButton = $current.find("button");
+                    list.form[currentUuid][currentWidget] = $(this).val();
+                    if (currentWidget == "label") {
+                        currentSpan.text($(this).val());
+                    } else if (currentWidget == "text") {
+                        currentButton.text($(this).val());
+                    }
+                }
+            });
+
+            //设置按钮的类型change事件
+            $attributeWrap.on("change", ".buttonType select", function () {
+                var text = $(this).find(":selected").text();
+                list.form[$current.attr("data-uuid")].text = text;
+                $attributeWrap.find(".text input").eq(0).val(text);
+                $current.find("button").text(text);
+                if($(this).val()=="append"){
+                    list.form[$current.attr("data-uuid")].plug = "modal-append";
+                }
+            });
+
+            //设置按钮的颜色
+            $attributeWrap.on("click", "[data-class]", function () {
+                list.form[currentUuid].class = $(this).attr("data-class");
+                $current.find("button").attr("class", $(this).attr("data-class") + " button btn-xs");
+            })
+        },
+
+        //删除控件
+        fDelete: function () {
+            $(".template").on("click", close, function () {
+                var widget = $(this).closest("[data-widget]");
+                widget.remove();
+                $(".attribute-wrap > div").hide();
+                delete list.form[widget.attr("data-uuid")];
+            })
+        },
+
+        //导出json,发送请求
+        fExport: function (that) {
+            $(".export").on("click", function () {
+                that.fFormatList();
+            });
+        },
+
+        //格式化list
+        fFormatList: function () {
+            var form = [],
+                options = [];
+            for (var i in list.form) {
+                if (!list.form[i].widgetType) {
+                    form.push(list.form[i])
+                } else {
+                    options.push(list.form[i]);
+                }
+            }
+
+            var data = {
+                "title": $(".gen-title").val(),
+                "wrap": form,
+                "options": options
+            };
+            console.log(data);
+        }
     };
 
     $(function () {
         new Index();
     });
-})(jQuery);
+})(jQuery, window.utils);

@@ -10,7 +10,9 @@
 <body>
 <div class="">
     <div class="wrap">
-        <h4 class="title">XM后台页面生成器</h4>
+        <h4 class="title">XM后台页面生成器
+            <button class="btn btn-success pull-right export">导出</button>
+        </h4>
     </div>
     <div class="content">
         <div class="row">
@@ -26,12 +28,12 @@
                                 <ul>
                                     <li>
                                         <span draggable="true" data-widget="radio">
-                                            <input type="radio" checked>&emsp;label
+                                            <input type="radio" checked>&emsp;<span>label</span>
                                         </span>
                                     </li>
                                     <li>
                                         <span draggable="true" data-widget="checkbox">
-                                            <input type="checkbox" checked>&emsp;label
+                                            <input type="checkbox" checked>&emsp;<span>label</span>
                                         </span>
                                     </li>
                                     <li>
@@ -41,11 +43,11 @@
                                     </li>
                                     <li>
                                         <span draggable="true" data-widget="textLabel">
-                                            label&emsp;<input type="text" disabled>
+                                            <span>label</span>&emsp;<input type="text" disabled>
                                         </span>
                                     </li>
                                     <li>
-                                        <span draggable="true" data-widget="textarea">label&emsp;
+                                        <span draggable="true" data-widget="textarea"><span>label</span>&emsp;
                                             <textarea cols="18" disabled class="textarea"
                                                       rows="2"></textarea>
                                         </span>
@@ -56,23 +58,23 @@
                                         </span>
                                     </li>
                                     <li>
-                                        <span draggable="true" data-widget="selectLabel">label&emsp;
+                                        <span draggable="true" data-widget="selectLabel"><span>label</span>&emsp;
                                             <img src="../img/select.png" class="select">
                                         </span>
                                     </li>
                                     <li>
-                                        <span draggable="true" data-widget="datePicker">时间&emsp;
+                                        <span draggable="true" data-widget="timeSingle"><span>时间</span>&emsp;
                                             <input type="text" disabled>
                                         </span>
                                     </li>
                                     <li>
-                                        <span draggable="true" data-widget="time">时间&emsp;
+                                        <span draggable="true" data-widget="time"><span>时间</span>&emsp;
                                             <input type="text" disabled class="date">-<input type="text" disabled
                                                                                              class="date">
                                         </span>
                                     </li>
                                     <li>
-                                        <span draggable="true" data-widget="radio">
+                                        <span draggable="true" data-widget="button">
                                             <button class="btn btn-xs button">按钮</button>
                                         </span>
                                     </li>
@@ -139,17 +141,48 @@
                 <div class="attribute">
                     <p><i class="fa fa-cog"> </i>属性</p>
                     <div class="attribute-wrap">
-                        <div><label>label:</label><br/><input type="text"></div>
-                        <div><label>name:</label><br/><input type="text"></div>
-                        <div><label>type:</label>
-                            <select class="attr-select">
-                                <option value="1">text</option>
-                                <option value="2">number</option>
+                        <div class="label"><label>label:</label><br/><input type="text"></div>
+                        <div class="name"><label>name:</label><br/><input type="text" placeholder="字段名"></div>
+                        <div class="type"><label>type:</label>
+                            <select class="select">
+                                <option value="text">text</option>
+                                <option value="number">number</option>
                             </select>
                         </div>
-                        <div><label>startName:</label><br/><input type="text"></div>
-                        <div><label>endName:</label><br/><input type="text"></div>
-                        <div><label>endName:</label><br/><input type="text"></div>
+                        <div class="startName"><label>startName:</label><br/><input type="text"></div>
+                        <div class="endName"><label>endName:</label><br/><input type="text"></div>
+                        <div class="startPlaceholder"><label>startPlaceholder:</label><br/><input type="text"></div>
+                        <div class="endPlaceholder"><label>endPlaceholder:</label><br/><input type="text"></div>
+                        <div class="fdfsTest"><label>fdfsTest:</label><br/><input type="text"></div>
+                        <div class="fdfsOnline"><label>fdfsOnline:</label><br/><input type="text"></div>
+                        <div class="serverTest"><label>serverTest:</label><br/><input type="text"></div>
+                        <div class="serverOnline"><label>serverOnline:</label><br/><input type="text"></div>
+                        <div class="text"><label>text:</label><br/><input type="text" placeholder="按钮文本"></div>
+                        <div class="buttonType">
+                            <label>buttonType:</label>
+                            <select>
+                                <option value="">请选择</option>
+                                <option value="search">查询</option>
+                                <option value="append">新增</option>
+                                <option value="edit">编辑</option>
+                            </select>
+                        </div>
+                        <div class="api"><label>api:</label><br/><input type="text" placeholder="默认表单提交"></div>
+                        <div class="changeClass">
+                            <label>按钮颜色:</label>
+                            <div class="radio">
+                                <label><input type="radio" name="radio" data-class="btn btn-primary"><i
+                                        class="btnPrimary"></i></label>
+                                <label><input type="radio" name="radio" data-class="btn btn-success"><i
+                                        class="btnSuccess"></i></label>
+                                <label><input type="radio" name="radio" data-class="btn btn-info"><i
+                                        class="btnInfo"></i></label>
+                                <label><input type="radio" name="radio" data-class="btn btn-warning"><i
+                                        class="btnWarning"></i></label>
+                                <label><input type="radio" name="radio" data-class="btn btn-danger"><i
+                                        class="btnDanger"></i></label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -170,6 +203,7 @@
 </script>
 <script type="text/javascript" src="http://s1.xmcdn.com/lib/common/last/jquery/2.1.4/jquery.js"></script>
 <script type="text/javascript" src="http://s1.xmcdn.com/lib/common/last/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/utils.js"></script>
 <script type="text/javascript" src="../js/index.js"></script>
 </body>
 </html>
