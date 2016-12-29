@@ -87,14 +87,6 @@
                             </div>
                         </li>
                         <li>
-                            <a data-toggle="collapse" href="#col2" class="menu-list-item">
-                                表格
-                            </a>
-                            <div id="col2" class="menu-list-content collapse">
-                                表格
-                            </div>
-                        </li>
-                        <li>
                             <a data-toggle="collapse" href="#col3" class="menu-list-item">
                                 弹出框
                             </a>
@@ -183,6 +175,33 @@
                                         class="btnDanger"></i></label>
                             </div>
                         </div>
+                        <div class="cols">
+                            <label>cols:</label>
+                            <select>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3" selected>3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                            </select>
+                        </div>
+                        <div class="tableButton">
+                            <label>type:</label>
+                            <select>
+                                <option value="button">button</option>
+                                <option value="link">link</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -195,7 +214,22 @@
 
     </div>
     <div class="gen-wrapper gen-table">
-
+        <table class="table table-bordered">
+            <thead>
+            <tr class="tHeadTr">
+                <th><input type="text"></th>
+                <th><input type="text"></th>
+                <th><input type="text"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="tBodyTr">
+                <td>***</td>
+                <td>***</td>
+                <td class="text-center"><button class="append">+</button></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </script>
 <script type="text/template" id="append">

@@ -214,12 +214,12 @@ body {
     min-height: 380px;
 }
 
-.gen-condition [data-widget] {
+.gen-condition [data-widget], td [data-widget] {
     display: inline-block;
     line-height: 28px;
     margin-left: 15px;
     margin-bottom: 10px;
-    position:relative;
+    position: relative;
 }
 
 .gen-condition [data-widget] input {
@@ -244,7 +244,7 @@ body {
 
 .gen-active button {
     background-color: #74c790;
-    border:1px solid #74c790;
+    border: 1px solid #74c790;
 }
 
 .gen-active input,
@@ -286,27 +286,47 @@ body {
     font-size: 100%;
     font-weight: 400;
     line-height: inherit;
-    text-align:left;
+    text-align: left;
 }
 
-.changeClass i{
-    display:inline-block;
-    width:20px;
-    height:20px;
+.changeClass i {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
 }
 
-.btnPrimary{
+.btnPrimary {
     background-color: #428bca;
 }
-.btnSuccess{
+
+.btnSuccess {
     background-color: #5cb85c;
 }
-.btnInfo{
+
+.btnInfo {
     background-color: #5bc0de;
 }
-.btnWarning{
+
+.btnWarning {
     background-color: #f0ad4e;
 }
-.btnDanger{
+
+.btnDanger {
     background-color: #d9534f;
+}
+
+/*表格里的输入框样式*/
+.table input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #d9dadc;
+    outline: none;
+}
+
+.table input:focus {
+    border-bottom: 1px solid #74c790;
+}
+
+.table > thead > tr > th {
+    border-bottom: none;
 }

@@ -22,6 +22,7 @@
             self.fMenuChoose().fModalChoose(self);
 
             self.fExport(self);
+
         },
 
         //菜单选择
@@ -74,6 +75,7 @@
                         $gen.html($("#list").html());
                         $chose.text("-列表页");
                         that.fDrop(that);
+                        that.fTable();
                         break;
                     case "append":
                         $gen.html($("#append").html());
@@ -86,8 +88,8 @@
         //条件区域拖动事件
         fDrop: function (that) {
             var $widget = $("[data-widget]"),
-                $condition = $(".gen-condition"),
-                ele = null;
+                $condition = $(".gen-condition");
+            ele = null;
             for (var i = 0; i < $widget.length; i++) {
                 //开始拖动
                 $widget[i].ondragstart = function () {
@@ -100,6 +102,7 @@
             };
             //拖动结束
             $condition[0].ondrop = function () {
+                //生成uuid
                 var uuid = cmp.genUuid() + cmp.genUuid();
                 $condition.append(ele.outerHTML);
 
@@ -193,7 +196,7 @@
                         buttonType: "",
                         changeClass: "",
                         class: "",
-                        plug:"",
+                        plug: "",
                         widgetType: "button"
                     };
                     break;
@@ -248,7 +251,7 @@
                 list.form[$current.attr("data-uuid")].text = text;
                 $attributeWrap.find(".text input").eq(0).val(text);
                 $current.find("button").text(text);
-                if($(this).val()=="append"){
+                if ($(this).val() == "append") {
                     list.form[$current.attr("data-uuid")].plug = "modal-append";
                 }
             });
@@ -260,14 +263,59 @@
             })
         },
 
-        //删除控件
+        //条件区域删除控件
         fDelete: function () {
-            $(".template").on("click", close, function () {
+            $(".gen-condition").on("click", close, function () {
                 var widget = $(this).closest("[data-widget]");
                 widget.remove();
                 $(".attribute-wrap > div").hide();
                 delete list.form[widget.attr("data-uuid")];
             })
+        },
+
+        //表格事件绑定
+        fTable: function () {
+            var $condition = $(".gen-condition"),
+                $attributeWrap = $(".attribute-wrap");
+            $(".gen-table input").on("focus", function () {
+                $condition.find(".gen-active").removeClass("gen-active").find(close).hide();
+                $attributeWrap.find(">div").hide();
+                $(".cols").show();
+            }).on("blur", function () {
+                $(".cols").hide();
+            });
+            $attributeWrap.on("change", ".cols select", function () {
+                var cols = $(this).val();
+                var $tHeadTr = $(".tHeadTr"),
+                    $tBodyTr = $('.tBodyTr');
+                $tHeadTr.html("");
+                $tBodyTr.html("");
+                for (var i = 0; i < cols; i++) {
+                    $tHeadTr.append('<th><input type="text"></th>');
+                    if (i == cols - 1) {
+                        $tBodyTr.append('<td class="text-center"><button class="append">+</button></td>');
+                    } else {
+                        $tBodyTr.append('<td>***</td>');
+                    }
+                }
+            });
+
+            $(document).on("click", ".append", function () {
+                var $td = $(this).closest("td");
+                $td.prepend('<span draggable="true" data-widget="button">' +
+                    '<button class="btn btn-xs button">按钮</button></span>&emsp;')
+            });
+            $("td").on("click", "[data-widget]", function () {
+                $(this).addClass("gen-active").siblings().removeClass("gen-active");
+                if ($(this).find(close).length == 0) {
+                    $(this).append('<i class="fa fa-minus-circle" style="position:absolute;top:-10px;right:-12px;color:red"></i>')
+                } else {
+                    $(this).find(close).show();
+                }
+            });
+
+            $()
+
         },
 
         //导出json,发送请求
